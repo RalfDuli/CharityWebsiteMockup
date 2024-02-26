@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  web:
+  backend:
     build:
       context: ./backend
       dockerfile: Dockerfile.backend
@@ -14,3 +14,12 @@ services:
     environment:
       - FLASK_ENV=development
     command: flask run --host=0.0.0.0
+
+  frontend:
+    build:
+      context: ./frontend/charity-website
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3000:80"
+    stdin_open: true
+    tty: true
